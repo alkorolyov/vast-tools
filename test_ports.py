@@ -225,7 +225,7 @@ if __name__ == '__main__':
             is_closed = True
             print(f"Port {port} is CLOSED.")
             break
-        time.sleep(0.5)
+        time.sleep(0.1)
 
     if not is_closed:
         print("Now, you can safely run following command if this machine is idle:")
