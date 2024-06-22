@@ -41,7 +41,7 @@ def test_cuda_devices_parallel():
         for thread in threads:
             thread.join()
     except KeyboardInterrupt:
-        print("KeyboardInterrupt received, stopping all threads... ", end="")
+        print("\nKeyboardInterrupt received, stopping all threads... ", end="")
         stop_event.set()
         for thread in threads:
             thread.join()
