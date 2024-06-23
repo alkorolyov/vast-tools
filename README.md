@@ -17,7 +17,7 @@ docker run --gpus all --rm oguzpastirmaci/gpu-burn 60
 
 ### CPU burn
 ```
-sudo apt-get install stress -y -q; stress --cpu -t 60
+sudo apt-get install stress -y -q; stress --cpu 64 -t 60
 ```
 
 ### Test open ports
