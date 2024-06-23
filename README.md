@@ -11,6 +11,8 @@ wget https://raw.githubusercontent.com/alkorolyov/vast-tools/main/gpu_test_run.p
 ```
 
 #### Test open ports
-```wget https://raw.githubusercontent.com/alkorolyov/vast-tools/main/test_ports.py; python3 test_ports.py```
+```
+wget https://raw.githubusercontent.com/alkorolyov/vast-tools/main/test_ports.py; python3 test_ports.py
+```
 
 
