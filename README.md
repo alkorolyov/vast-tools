@@ -1,4 +1,4 @@
-### Find your machine
+### Create instance
 ```
 ./vast show machines | grep machine_id
 ./vast search offers 'machine_id = xxx'
