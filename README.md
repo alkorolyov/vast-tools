@@ -12,7 +12,7 @@ curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/gpu_test_ru
 
 ### GPU burn
 ```
-docker run --gpus all --rm oguzpastirmaci/gpu-burn 60
+sudo docker run --gpus all --rm oguzpastirmaci/gpu-burn 60
 ```
 
 ### CPU burn
