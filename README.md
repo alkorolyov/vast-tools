@@ -25,7 +25,7 @@ sudo apt-get install stress -y -qq; stress --cpu 64 -t 60
 curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/test_ports.py; python3 test_ports.py
 ```
 
-### Check PCI slot width
+### Get PCI slots info
 ```
 curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/pci_info.sh; bash pci_info.sh
 ```
