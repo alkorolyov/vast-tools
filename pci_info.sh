@@ -34,6 +34,8 @@ check_and_install() {
 check_and_install "dmidecode"
 check_and_install "pciutils"
 
+echo "\nGetting PCI info\n"
+
 # Get the GPU devices and their addresses
 nvidia_output=$(nvidia-smi --query-gpu=index,name,gpu_bus_id,pcie.link.gen.max --format=csv,noheader)
 
