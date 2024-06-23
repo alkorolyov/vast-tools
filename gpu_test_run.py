@@ -12,9 +12,9 @@ def test_device(device_index):
     a = torch.randn((1024, 1024)).to(device)
     b = torch.randn((1024, 1024)).to(device)
 
-    # Perform a simple addition in a loop
+    # Perform a matrix multiplication in a loop
     while not stop_event.is_set():
-        torch.mm(a, b).shape
+        torch.mm(a, b)
 
 def test_cuda_devices_parallel():
     # Check if CUDA is available
