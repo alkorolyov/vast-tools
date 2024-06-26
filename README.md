@@ -5,6 +5,11 @@
 ./vast create instance xxx --image pytorch/pytorch --disk 8 --jupyter --jupyter-lab
 ```
 
+### Monitor gpu
+```
+watch nvidia-smi --query-gpu=index,temperature.gpu,fan.speed,power.draw.instant,clocks.sm,clocks.mem --format=csv
+```
+
 ### Test pytorch on all gpus
 ```
 curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/gpu_test_run.py; python3 gpu_test_run.py
