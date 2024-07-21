@@ -19,7 +19,7 @@ fi
 # DOCKER INSTALL
 # Add Docker's official GPG key:
 sudo apt-get update -qq
-sudo apt-get install ca-certificates curl -qq
+sudo apt-get install -qq -y ca-certificates curl
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
@@ -32,4 +32,4 @@ echo \
 sudo apt-get update -qq
 
 # install docker
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin nvidia-container-runtime
+sudo apt-get install -qq -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin nvidia-container-runtime
