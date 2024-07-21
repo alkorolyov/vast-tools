@@ -1,3 +1,8 @@
+### Install docker
+```
+curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/docker_install.sh; bash docker_install.sh
+```
+
 ### Create instance
 ```
 ./vast show machines | grep machine_id
