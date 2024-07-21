@@ -1,3 +1,5 @@
+# Initial preparations
+
 ### Install nvidia drivers
 ```
 # run first then put the most recent version
@@ -12,22 +14,7 @@ sudo apt-get install nvidia-headless-550-server nvidia-utils-550-server -y
 curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/docker_install.sh; bash docker_install.sh
 ```
 
-### Create instance
-```
-./vast show machines | grep machine_id
-./vast search offers 'machine_id = xxx'
-./vast create instance xxx --image pytorch/pytorch --disk 8 --jupyter --jupyter-lab
-```
-
-### Monitor gpu
-```
-watch nvidia-smi --query-gpu=index,temperature.gpu,fan.speed,power.draw.instant,clocks.sm,clocks.mem --format=csv
-```
-
-### Test pytorch on all gpus
-```
-curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/gpu_test_run.py; python3 gpu_test_run.py
-```
+# Testing
 
 ### GPU burn
 ```
@@ -48,6 +35,24 @@ curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/test_ports.
 ```
 curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/pci_info.sh; bash pci_info.sh
 ```
+
+### Create instance
+```
+./vast show machines | grep machine_id
+./vast search offers 'machine_id = xxx'
+./vast create instance xxx --image pytorch/pytorch --disk 8 --jupyter --jupyter-lab
+```
+
+### Monitor gpu
+```
+watch nvidia-smi --query-gpu=index,temperature.gpu,fan.speed,power.draw.instant,clocks.sm,clocks.mem --format=csv
+```
+
+### Test pytorch on all gpus
+```
+curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/gpu_test_run.py; python3 gpu_test_run.py
+```
+
 
 ### Uninstall vast
 ```
