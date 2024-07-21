@@ -1,3 +1,10 @@
+### Install nvidia drivers
+```
+apt search nvidia-driver	
+# put the most recent version
+sudo apt-get install nvidia-headless-535-server nvidia-utils-535-server -y
+```
+
 ### Install docker
 ```
 curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/docker_install.sh; bash docker_install.sh
