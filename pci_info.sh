@@ -4,7 +4,7 @@
 if [ ! -f /usr/local/bin/bandwidthTest ]; then
     echo "Downloading bandwidthTest..."
     # Use curl to download bandwidthTest from the specified URL
-    sudo curl -os /usr/local/bin/bandwidthTest https://raw.githubusercontent.com/alkorolyov/vast-tools/main/bin/bandwidthTest
+    sudo curl -o /usr/local/bin/bandwidthTest https://raw.githubusercontent.com/alkorolyov/vast-tools/main/bin/bandwidthTest
 
     # Check if download was successful
     if [ $? -eq 0 ]; then
