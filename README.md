@@ -1,8 +1,10 @@
 ### Install nvidia drivers
 ```
-apt search nvidia-driver	
-# put the most recent version
-sudo apt-get install nvidia-headless-535-server nvidia-utils-535-server -y
+# run first then put the most recent version
+apt search nvidia-driver
+```
+```
+sudo apt-get install nvidia-headless-550-server nvidia-utils-550-server -y
 ```
 
 ### Install docker
