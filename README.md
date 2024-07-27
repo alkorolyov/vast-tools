@@ -14,19 +14,19 @@ sudo apt-get install nvidia-headless-550-server nvidia-utils-550-server -y
 curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/docker_install.sh; bash docker_install.sh
 ```
 
-### Install miniforge
+### Install miniforge and create conda environment
 ```
+CONDA_ENV="vast"
+
 curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
 bash Miniforge3-$(uname)-$(uname -m).sh -b
 source "${HOME}/miniforge3/etc/profile.d/conda.sh"
 source "${HOME}/miniforge3/etc/profile.d/mamba.sh"
 conda activate
-```
 
-```
-CONDA_ENV="vast"
 mamba env create -n $CONDA_ENV -f env.yml
-python -m ipykernel install --user --name $CONDA_ENV
+conda run -n $CONDA_ENV python -m ipykernel install --user --name $CONDA_ENV
+conda activate $CONDA_ENV
 ```
 
 # Testing
