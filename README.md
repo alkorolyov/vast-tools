@@ -14,6 +14,12 @@ sudo apt-get install nvidia-headless-550-server nvidia-utils-550-server -y
 curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/docker_install.sh; bash docker_install.sh
 ```
 
+### Install miniforge
+```
+curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+bash Miniforge3-$(uname)-$(uname -m).sh -b
+```
+
 # Testing
 
 ### GPU burn
