@@ -18,6 +18,15 @@ curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/docker_inst
 ```
 curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
 bash Miniforge3-$(uname)-$(uname -m).sh -b
+source "${HOME}/miniforge3/etc/profile.d/conda.sh"
+source "${HOME}/miniforge3/etc/profile.d/mamba.sh"
+conda activate
+```
+
+```
+CONDA_ENV="vast"
+mamba env create -n $CONDA_ENV -f env.yml
+python -m ipykernel install --user --name $CONDA_ENV
 ```
 
 # Testing
