@@ -1,4 +1,4 @@
-# Initial preparations
+# Initial setup
 
 ### Install nvidia drivers
 ```
