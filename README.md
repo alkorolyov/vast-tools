@@ -1,5 +1,55 @@
 # Initial setup
 
+### Install Ubuntu 20.04
+
+* During installation create two partitions:
+  8 gb swap and full-size ext4 on SSD
+  optionally create raid array from nvme
+* Add openssh server
+* Reboot
+
+
+```
+# Install necessary packages
+sudo apt-get install mc python3 -y
+
+# disable automaic updates
+sudo apt purge --auto-remove unattended-upgrades -y
+sudo systemctl disable apt-daily-upgrade.timer
+sudo systemctl mask apt-daily-upgrade.service 
+sudo systemctl disable apt-daily.timer
+sudo systemctl mask apt-daily.service
+
+# create and mount /var/lib/docker on /dev/nvme0n1
+sudo mkfs.xfs /dev/nvme0n1
+sudo mkdir -p /var/lib/docker
+
+# Add the disk to fstab with discard and nofail options
+sudo bash -c 'uuid=$(sudo blkid -s UUID -o value /dev/nvme0n1); echo "UUID=$uuid /var/lib/docker xfs rw,auto,pquota,discard,nofail 0 0" >> /etc/fstab'
+
+# Mount the filesystem
+sudo mount -a
+
+# Check that /dev/nvme0n1 is mounted to /var/lib/docker/
+df -h
+
+# create and mount /var/lib/docker on raid /dev/md0
+# Create XFS filesystem on the RAID 0 array
+sudo mkfs.xfs /dev/md0 -f
+
+# Create directory for Docker
+sudo mkdir -p /var/lib/docker
+
+# Add the RAID array to fstab with appropriate options
+sudo bash -c 'uuid=$(sudo blkid -s UUID -o value /dev/md0); echo "UUID=$uuid /var/lib/docker xfs rw,auto,pquota,discard,nofail 0 0" >> /etc/fstab'
+
+# Mount all filesystems
+sudo mount -a
+
+# Check that the RAID array is mounted to /var/lib/docker/
+df -h
+```
+  
 ### Install nvidia drivers
 ```
 # run first then put the most recent version
@@ -7,11 +57,13 @@ sudo apt search nvidia-driver | grep nvidia-driver | sort -r
 ```
 ```
 sudo apt-get install nvidia-headless-550-server nvidia-utils-550-server -y
+sudo reboot now
 ```
 
-### Install docker
+### Setup vast
+Copy command from vast site
 ```
-curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/docker_install.sh; bash docker_install.sh
+https://cloud.vast.ai/host/setup/
 ```
 
 ### Install miniforge and create conda environment
