@@ -13,6 +13,11 @@
 # Install necessary packages
 sudo apt-get install mc python3 -y
 
+# Configure SSH
+sudo sed -i 's/#Port 22/Port 22222/' /etc/ssh/sshd_config # optional
+sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+sudo systemctl restart ssh
+
 # disable automaic updates
 sudo apt purge --auto-remove unattended-upgrades -y
 sudo systemctl disable apt-daily-upgrade.timer
