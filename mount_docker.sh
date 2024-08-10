@@ -14,18 +14,17 @@ if [ "$OPTION" = "1" ]; then
     echo "WARNING: IF YOUR OS IS ON /dev/nvme0n1 IT WILL BE WIPED."
     read -p "Continue (y/n)? " CONT
     if [ "$CONT" = "y" ]; then
-        # Create the XFS partition and write it to the disk /dev/nvme0n1
-        echo -e "n\n\n\n\n\n\nw\n" | sudo cfdisk /dev/nvme0n1
-        sudo mkfs.xfs /dev/nvme0n1p1
+        # Format the entire disk /dev/nvme0n1 with XFS
+        sudo mkfs.xfs /dev/nvme0n1
         sudo mkdir -p /var/lib/docker
 
-        # Add the partition to fstab with discard and nofail options
-        sudo bash -c 'uuid=$(sudo xfs_admin -lu /dev/nvme0n1p1 | sed -n "2p" | awk \'{print $NF}\'); echo "UUID=$uuid /var/lib/docker xfs rw,auto,pquota,discard,nofail 0 0" >> /etc/fstab'
+        # Add the disk to fstab with discard and nofail options
+        sudo bash -c 'uuid=$(sudo blkid -s UUID -o value /dev/nvme0n1); echo "UUID=$uuid /var/lib/docker xfs rw,auto,pquota,discard,nofail 0 0" >> /etc/fstab'
 
         # Mount the filesystem
         sudo mount -a
 
-        # Check that /dev/nvme0n1p1 is mounted to /var/lib/docker/
+        # Check that /dev/nvme0n1 is mounted to /var/lib/docker/
         df -h
     else
         echo "Operation canceled."
@@ -36,12 +35,8 @@ elif [ "$OPTION" = "2" ]; then
     echo "WARNING: ALL DATA ON /dev/nvme0n1 AND /dev/nvme1n1 WILL BE WIPED."
     read -p "Continue (y/n)? " CONT
     if [ "$CONT" = "y" ]; then
-        # Create partitions on both disks /dev/nvme0n1 and /dev/nvme1n1
-        echo -e "n\n\n\n\n\n\nw\n" | sudo cfdisk /dev/nvme0n1
-        echo -e "n\n\n\n\n\n\nw\n" | sudo cfdisk /dev/nvme1n1
-
-        # Create RAID 0 array from the partitions
-        sudo mdadm --create --verbose /dev/md0 --level=0 --raid-devices=2 /dev/nvme0n1p1 /dev/nvme1n1p1
+        # Create RAID 0 array from the entire disks /dev/nvme0n1 and /dev/nvme1n1
+        sudo mdadm --create --verbose /dev/md0 --level=0 --raid-devices=2 /dev/nvme0n1 /dev/nvme1n1
 
         # Create XFS filesystem on the RAID 0 array
         sudo mkfs.xfs /dev/md0
