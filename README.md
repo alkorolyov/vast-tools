@@ -3,7 +3,7 @@
 ### Install nvidia drivers
 ```
 # run first then put the most recent version
-apt search nvidia-driver
+sudo apt search nvidia-driver | grep nvidia-driver | sort -r
 ```
 ```
 sudo apt-get install nvidia-headless-550-server nvidia-utils-550-server -y
