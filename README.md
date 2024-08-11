@@ -1,3 +1,5 @@
+[Vast installation](# Initial setup)
+
 # Initial setup
 
 ### Install Ubuntu 20.04
