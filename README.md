@@ -6,9 +6,11 @@
 
 ### Install Ubuntu 20.04
 
-* During installation create two partitions:
-  8 gb swap and full-size ext4 on SSD
-  optionally create raid array from nvme
+* Partitions during installation:
+    - 8 gb swap on boot drive
+    - full-size ext4 on SSD, boot drive
+    - (optional) raid from nvme
+* Configure ip addr (disable unused adapter)
 * Add openssh server
 * Reboot
 
