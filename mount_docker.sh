@@ -15,7 +15,7 @@ if [ "$OPTION" = "1" ]; then
     read -p "Continue (y/n)? " CONT
     if [ "$CONT" = "y" ]; then
         # Format the entire disk /dev/nvme0n1 with XFS
-        sudo mkfs.xfs /dev/nvme0n1
+        sudo mkfs.xfs -f /dev/nvme0n1
         sudo mkdir -p /var/lib/docker
 
         # Add the disk to fstab with discard and nofail options
@@ -39,7 +39,7 @@ elif [ "$OPTION" = "2" ]; then
         sudo mdadm --create --verbose /dev/md0 --level=0 --raid-devices=2 /dev/nvme0n1 /dev/nvme1n1
 
         # Create XFS filesystem on the RAID 0 array
-        sudo mkfs.xfs /dev/md0
+        sudo mkfs.xfs -f /dev/md0
 
         # Create directory for Docker
         sudo mkdir -p /var/lib/docker
