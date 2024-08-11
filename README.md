@@ -14,12 +14,14 @@
 * Add openssh server
 * Reboot
 
-
 ```
 # Install necessary packages
 sudo apt-get install curl wget mc python3 -y
 
 # Configure SSH
+# Generate keys on your client machine and copy public key to host
+ssh-keygen -C user@domain
+# Disable password login and change port
 sudo sed -i 's/#Port 22/Port 22222/' /etc/ssh/sshd_config # optional
 sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
 sudo systemctl restart ssh
