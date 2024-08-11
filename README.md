@@ -1,4 +1,4 @@
-[Vast installation](# Initial setup)
+[Vast installation](#initial-setup)
 
 # Initial setup
 
