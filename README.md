@@ -33,7 +33,7 @@ sudo mkdir -p /var/lib/docker
 sudo bash -c 'uuid=$(sudo blkid -s UUID -o value /dev/nvme0n1); echo "UUID=$uuid /var/lib/docker xfs rw,auto,pquota,discard,nofail 0 0" >> /etc/fstab'
 
 # [OPTION 2] create and mount /var/lib/docker on raid /dev/md0
-# Create XFS filesystem on the RAID 0 array
+# Create XFS filesystem on the RAID array
 sudo mkfs.xfs /dev/md0 -f
 sudo mkdir -p /var/lib/docker
 
