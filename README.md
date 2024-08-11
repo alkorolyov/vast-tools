@@ -11,7 +11,7 @@
 
 ```
 # Install necessary packages
-sudo apt-get install mc python3 -y
+sudo apt-get install curl wget mc python3 -y
 
 # Configure SSH
 sudo sed -i 's/#Port 22/Port 22222/' /etc/ssh/sshd_config # optional
@@ -49,7 +49,7 @@ df -h
   
 ### Install nvidia drivers
 ```
-# run first then put the most recent version
+# check the latest driver version 
 sudo apt search nvidia-driver | grep nvidia-driver | sort -r
 ```
 ```
