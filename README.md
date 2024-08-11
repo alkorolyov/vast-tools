@@ -9,7 +9,7 @@
 * Partitions during installation:
     - 8 gb swap on boot drive
     - full-size ext4 on SSD, boot drive
-    - (optional) raid from nvme
+    - (optional) raid from NVME drives
 * Configure ip addr (disable unused adapter)
 * Add openssh server
 * Reboot
