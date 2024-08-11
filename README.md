@@ -1,4 +1,5 @@
 [Vast installation](#initial-setup)
+[Test machine](#testing)
 
 # Initial setup
 
