@@ -31,17 +31,17 @@ sudo systemctl mask apt-daily-upgrade.service
 sudo systemctl disable apt-daily.timer
 sudo systemctl mask apt-daily.service
 
-# [OPTION 1] create and mount /var/lib/docker on /dev/nvme0n1
-sudo mkfs.xfs /dev/nvme0n1 -f
+# create /var/lib/docker
 sudo mkdir -p /var/lib/docker
+
+# [OPTION 1] mount on /dev/nvme0n1
+sudo mkfs.xfs /dev/nvme0n1 -f
 
 # Add the disk to fstab with discard and nofail options
 sudo bash -c 'uuid=$(sudo blkid -s UUID -o value /dev/nvme0n1); echo "UUID=$uuid /var/lib/docker xfs rw,auto,pquota,discard,nofail 0 0" >> /etc/fstab'
 
-# [OPTION 2] create and mount /var/lib/docker on raid /dev/md0
-# Create XFS filesystem on the RAID array
+# [OPTION 2] mount on raid /dev/md0
 sudo mkfs.xfs /dev/md0 -f
-sudo mkdir -p /var/lib/docker
 
 # Add the RAID array to fstab with appropriate options
 sudo bash -c 'uuid=$(sudo blkid -s UUID -o value /dev/md0); echo "UUID=$uuid /var/lib/docker xfs rw,auto,pquota,discard,nofail 0 0" >> /etc/fstab'
