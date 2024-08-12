@@ -37,7 +37,8 @@ sudo systemctl mask apt-daily.service
 sudo mkdir -p /var/lib/docker
 
 # [OPTION 1] mount on /dev/nvme0n1
-sudo mkfs.xfs /dev/nvme0n1 -f
+echo -e "n\n\n\n\n\n\nw\n" | sudo cfdisk /dev/nvme0n1
+sudo mkfs.xfs /dev/nvme0n1
 
 # Add the disk to fstab with discard and nofail options
 sudo bash -c 'uuid=$(sudo blkid -s UUID -o value /dev/nvme0n1); echo "UUID=$uuid /var/lib/docker xfs rw,auto,pquota,discard,nofail 0 0" >> /etc/fstab'
@@ -51,7 +52,7 @@ sudo bash -c 'uuid=$(sudo blkid -s UUID -o value /dev/md0); echo "UUID=$uuid /va
 # Mount all filesystems
 sudo mount -a
 
-# Check that the RAID array is mounted to /var/lib/docker/
+# Check that the /var/lib/docker/ is mounted correctly
 df -h
 ```
   
