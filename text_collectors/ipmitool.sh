@@ -1,5 +1,6 @@
 #!/usr/bin/awk -f
 
+# Dependencies: ipmitool (packages)
 #
 # Converts output of `ipmitool sensor` to prometheus format.
 #
