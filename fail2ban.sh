@@ -8,5 +8,5 @@ findtime = 5m
 bantime = 1h
 enabled = true
 EOL
-sed -i 's/port     = ssh/port     = 22222/1' /etc/fail2ban/jail.conf
+sudo sed -i 's/port     = ssh/port     = 22222/1' /etc/fail2ban/jail.conf
 sudo systemctl restart fail2ban
