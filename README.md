@@ -98,6 +98,10 @@ Disable password login
 sudo sed -i 's/#Port 22/Port 22222/' /etc/ssh/sshd_config # optional
 sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
 sudo systemctl restart ssh
+
+# remove news
+sudo rm /etc/update-motd.d/50-motd-news
+sudo rm /etc/update-motd.d/88-esm-announce
 ```
 
 # Testing
