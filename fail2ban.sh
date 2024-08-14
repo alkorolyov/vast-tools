@@ -4,9 +4,9 @@ sudo tee /etc/fail2ban/jail.local > /dev/null <<EOL
 maxretry = 3
 findtime = 5m
 
-[ssh]
+[sshd]
 bantime = 1h
 enabled = true
-port = 22222  # Your custom SSH port
 EOL
+sed 's/port     = ssh/port     = 22222/1' /etc/fail2ban/jail.local
 sudo systemctl restart fail2ban
