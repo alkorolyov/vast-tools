@@ -28,6 +28,24 @@ sudo sed -i 's/#UsePAM yes/UsePAM no/' /etc/ssh/sshd_config
 sudo rm -rf /etc/ssh/sshd_config.d/*
 sudo systemctl restart ssh
 
+# optinal fail2ban
+sudo apt-get install fail2ban
+sudo nano /etc/fail2ban/jail.local
+
+# copy this to jail.local
+[DEFAULT]
+maxretry = 3
+findtime = 600
+
+[sshd]
+enabled = true
+port = 22222  # Use your actual SSH port here if different
+logpath = /var/log/auth.log
+bantime = 3600  # 1 hour ban specifically for SSH
+
+sudo fail2ban-client status sshd # check status
+
+
 # disable automaic updates
 sudo apt purge --auto-remove unattended-upgrades -y
 sudo systemctl disable apt-daily-upgrade.timer
