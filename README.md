@@ -93,19 +93,6 @@ conda run -n $CONDA_ENV python -m ipykernel install --user --name $CONDA_ENV
 conda activate $CONDA_ENV
 ```
 
-### Configure SSH
-Create public key and copy to remote server
-```
-ssh-keygen -C user@domain
-```
-
-Disable password login
-```
-sudo sed -i 's/#Port 22/Port 22222/' /etc/ssh/sshd_config # optional
-sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
-sudo systemctl restart ssh
-```
-
 # Testing
 
 ### GPU burn
