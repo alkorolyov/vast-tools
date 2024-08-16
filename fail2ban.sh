@@ -1,4 +1,4 @@
-sudo apt-get install fail2ban
+sudo apt-get install fail2ban -y
 sudo tee /etc/fail2ban/jail.local > /dev/null <<EOL
 [DEFAULT]
 maxretry = 3
