@@ -21,6 +21,7 @@ sudo apt-get install curl wget mc python3 -y
 # Configure SSH
 # Generate keys on your client machine and copy public key to host
 ssh-keygen -C user@domain
+
 # Disable password login and change port
 sudo sed -i 's/#Port 22/Port 22222/' /etc/ssh/sshd_config # optional
 sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
@@ -29,22 +30,7 @@ sudo rm -rf /etc/ssh/sshd_config.d/*
 sudo systemctl restart ssh
 
 # optinal fail2ban
-sudo apt-get install fail2ban
-sudo nano /etc/fail2ban/jail.local
-
-# copy this to jail.local
-[DEFAULT]
-maxretry = 3
-findtime = 600
-
-[sshd]
-enabled = true
-port = 22222  # Use your actual SSH port here if different
-logpath = /var/log/auth.log
-bantime = 3600  # 1 hour ban specifically for SSH
-
-sudo fail2ban-client status sshd # check status
-
+wget https://raw.githubusercontent.com/alkorolyov/vast-tools/main/fail2ban.sh; bash fail2ban.sh
 
 # disable automaic updates
 sudo apt purge --auto-remove unattended-upgrades -y
@@ -60,15 +46,14 @@ sudo mkdir -p /var/lib/docker
 # [OPTION 1] mount on /dev/nvme0n1
 echo -e "n\n\n\n\n\n\nw\n" | sudo cfdisk /dev/nvme0n1
 sudo mkfs.xfs /dev/nvme0n1
-
-# Add the disk to fstab with discard and nofail options
-sudo bash -c 'uuid=$(sudo blkid -s UUID -o value /dev/nvme0n1); echo "UUID=$uuid /var/lib/docker xfs rw,auto,pquota,discard,nofail 0 0" >> /etc/fstab'
+uuid=$(sudo blkid -s UUID -o value /dev/nvme0n1)
 
 # [OPTION 2] mount on raid /dev/md0
 sudo mkfs.xfs /dev/md0 -f
+uuid=$(sudo blkid -s UUID -o value /dev/md0)
 
-# Add the RAID array to fstab with appropriate options
-sudo bash -c 'uuid=$(sudo blkid -s UUID -o value /dev/md0); echo "UUID=$uuid /var/lib/docker xfs rw,auto,pquota,discard,nofail 0 0" >> /etc/fstab'
+# Add the disk to fstab with discard and nofail options
+sudo bash -c "echo 'UUID=$uuid /var/lib/docker xfs rw,auto,pquota,discard,nofail 0 0' >> /etc/fstab"
 
 # Mount all filesystems
 sudo mount -a
