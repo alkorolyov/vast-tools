@@ -2,7 +2,7 @@ sudo apt-get install fail2ban -y
 sudo tee /etc/fail2ban/jail.local > /dev/null <<EOL
 [DEFAULT]
 maxretry = 3
-findtime = 5m
+findtime = 10m
 bantime.increment = true
 
 [sshd]
