@@ -11,4 +11,4 @@ enabled = true
 
 EOL
 sudo sed -i '0,/port\s*=\s*ssh/s//port    = 22222/' /etc/fail2ban/jail.conf
-sudo systemctl restart fail2ban
+sudo fail2ban-client reload
