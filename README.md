@@ -72,6 +72,11 @@ sudo apt-get install nvidia-headless-550-server nvidia-utils-550-server -y
 sudo reboot now
 ```
 
+### Install fail2ban
+```
+curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/fail2ban.sh; bash fail2ban.sh
+```
+
 ### Setup vast
 Copy command from vast site
 ```
