@@ -23,9 +23,9 @@ sudo apt-get install curl wget mc python3 -y
 ssh-keygen -C user@domain
 
 # Disable password login and change port
-sudo sed -i 's/#Port 22/Port 22222/' /etc/ssh/sshd_config # optional
-sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
-sudo sed -i 's/UsePAM yes/UsePAM no/' /etc/ssh/sshd_config
+sudo sed -i -E 's/^#?Port 22/Port 22222/' /etc/ssh/sshd_config # optional
+sudo sed -i -E 's/^#?PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+sudo sed -i -E 's/^#?UsePAM yes/UsePAM no/' /etc/ssh/sshd_config
 sudo rm -rf /etc/ssh/sshd_config.d/*
 sudo systemctl restart ssh
 
