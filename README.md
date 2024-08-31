@@ -132,6 +132,11 @@ curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/pci_info.sh
 watch nvidia-smi --query-gpu=index,temperature.gpu,fan.speed,power.draw.instant,clocks.sm,clocks.mem --format=csv
 ```
 
+### IPMICFG
+```
+curl -O https://github.com/alkorolyov/vast-tools/blob/main/ipmicfg.sh; bash ipmicfg.sh
+```
+
 ### Test pytorch on all gpus
 ```
 curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/gpu_test_run.py; python3 gpu_test_run.py
