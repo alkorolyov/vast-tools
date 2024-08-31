@@ -9,10 +9,10 @@ docker stats --no-stream --format "{{.ID}} {{.Name}} {{.CPUPerc}} {{.MemUsage}} 
     # Parse each line of the docker stats output
     CONTAINER_ID=$(echo $line | awk '{print $1}')
     NAME=$(echo $line | awk '{print $2}')
-    CPU=$(echo $line | awk '{print $3}')
+    CPU=$(echo $line | awk '{print $3}' | sed 's/%//')
     MEM_USAGE=$(echo $line | awk '{print $4}')
-    MEM_LIMIT=$(echo $line | awk '{print $6}')
-    MEM_PERC=$(echo $line | awk '{print $7}')
+    MEM_LIMIT=$(echo $line | awk '{print $6}' )
+    MEM_PERC=$(echo $line | awk '{print $7}' | sed 's/%//')
     NET_IO_RX=$(echo $line | awk '{print $8}')
     NET_IO_TX=$(echo $line | awk '{print $10}')
     BLOCK_IO_READ=$(echo $line | awk '{print $11}')
@@ -22,9 +22,9 @@ docker stats --no-stream --format "{{.ID}} {{.Name}} {{.CPUPerc}} {{.MemUsage}} 
     # Convert to bytes
     convert_to_bytes() {
         local input=$1
-        local value=$(echo "$input" | sed 's/[A-Za-z%]//g')
+        local value=$(echo "$input" | sed 's/[A-Za-z]//g')
         # strip 'i' and normalize to upper letters
-        local unit=$(echo "$input" | sed 's/[0-9.%i]//g' | tr '[:lower:]' '[:upper:]')
+        local unit=$(echo "$input" | sed 's/[0-9.i]//g' | tr '[:lower:]' '[:upper:]')
         # Debug
         # echo -e "\ninput $1"
         # echo -e "value $value"
