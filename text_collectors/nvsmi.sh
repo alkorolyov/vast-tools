@@ -22,7 +22,7 @@
 # TYPE gpu_pcie_gen gauge
 # HELP gpu_pcie_width PCIe link width
 # TYPE gpu_pcie_width gauge
-# HELP gpu_pstate GPU performance state
+# HELP gpu_pstate GPU performance state P0 , P2 etc. Numbers only
 # TYPE gpu_pstate gauge
 # HELP gpu_ecc_mode_current Current ECC mode
 # TYPE gpu_ecc_mode_current gauge
