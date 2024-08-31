@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Description: Expose metrics from docker stats 
+# Description: Expose metrics from docker stats
 #
 # Author: Alexander Korolyov <korol.al@gmail.com>
 
@@ -8,7 +8,8 @@
 convert_to_bytes() {
     local input=$1
     local value=$(echo "$input" | sed 's/[A-Za-z]//g')
-    local unit=$(echo "$input" | sed 's/[0-9.i]//g' | tr '[:lower:]' '[:upper:]')  # strip 'i' and normalize to upper letters
+    # strip 'i' and normalize to upper letters
+    local unit=$(echo "$input" | sed 's/[0-9.i]//g' | tr '[:lower:]' '[:upper:]')
 
     case "$unit" in
         B) echo "${value}";;
@@ -20,6 +21,26 @@ convert_to_bytes() {
         *) echo "Unsupported unit: $unit" >&2; exit 1;;
     esac
 }
+
+# Print HELP and TYPE information for each metric (only once)
+echo "# HELP docker_container_cpu_percentage CPU usage percentage of the container"
+echo "# TYPE docker_container_cpu_percentage gauge"
+echo "# HELP docker_container_memory_usage_bytes Memory usage of the container in bytes"
+echo "# TYPE docker_container_memory_usage_bytes gauge"
+echo "# HELP docker_container_memory_limit_bytes Memory limit of the container in bytes"
+echo "# TYPE docker_container_memory_limit_bytes gauge"
+echo "# HELP docker_container_memory_percentage Memory usage percentage of the container"
+echo "# TYPE docker_container_memory_percentage gauge"
+echo "# HELP docker_container_network_receive_bytes Network receive bytes by the container"
+echo "# TYPE docker_container_network_receive_bytes counter"
+echo "# HELP docker_container_network_transmit_bytes Network transmit bytes by the container"
+echo "# TYPE docker_container_network_transmit_bytes counter"
+echo "# HELP docker_container_block_io_read_bytes Block I/O read bytes by the container"
+echo "# TYPE docker_container_block_io_read_bytes counter"
+echo "# HELP docker_container_block_io_write_bytes Block I/O write bytes by the container"
+echo "# TYPE docker_container_block_io_write_bytes counter"
+echo "# HELP docker_container_pids Number of processes or threads in the container"
+echo "# TYPE docker_container_pids gauge"
 
 # Run docker stats command and capture the output
 docker stats --no-stream --format "{{.ID}} {{.Name}} {{.CPUPerc}} {{.MemUsage}} {{.MemPerc}} {{.NetIO}} {{.BlockIO}} {{.PIDs}}" | while read -r line; do
@@ -43,40 +64,14 @@ docker stats --no-stream --format "{{.ID}} {{.Name}} {{.CPUPerc}} {{.MemUsage}} 
     BLOCK_IO_READ_BYTES=$(convert_to_bytes $BLOCK_IO_READ)
     BLOCK_IO_WRITE_BYTES=$(convert_to_bytes $BLOCK_IO_WRITE)
 
-    # Output metrics in Prometheus format with HELP and TYPE
-    echo "# HELP docker_container_cpu_percentage CPU usage percentage of the container"
-    echo "# TYPE docker_container_cpu_percentage gauge"
+    # Output metrics in Prometheus format without HELP and TYPE lines
     echo "docker_container_cpu_percentage{name=\"$NAME\",id=\"$CONTAINER_ID\"} $CPU"
-
-    echo "# HELP docker_container_memory_usage_bytes Memory usage of the container in bytes"
-    echo "# TYPE docker_container_memory_usage_bytes gauge"
     echo "docker_container_memory_usage_bytes{name=\"$NAME\",id=\"$CONTAINER_ID\"} $MEM_USAGE_BYTES"
-
-    echo "# HELP docker_container_memory_limit_bytes Memory limit of the container in bytes"
-    echo "# TYPE docker_container_memory_limit_bytes gauge"
     echo "docker_container_memory_limit_bytes{name=\"$NAME\",id=\"$CONTAINER_ID\"} $MEM_LIMIT_BYTES"
-
-    echo "# HELP docker_container_memory_percentage Memory usage percentage of the container"
-    echo "# TYPE docker_container_memory_percentage gauge"
     echo "docker_container_memory_percentage{name=\"$NAME\",id=\"$CONTAINER_ID\"} $MEM_PERC"
-
-    echo "# HELP docker_container_network_receive_bytes Network receive bytes by the container"
-    echo "# TYPE docker_container_network_receive_bytes counter"
     echo "docker_container_network_receive_bytes{name=\"$NAME\",id=\"$CONTAINER_ID\"} $NET_IO_RX_BYTES"
-
-    echo "# HELP docker_container_network_transmit_bytes Network transmit bytes by the container"
-    echo "# TYPE docker_container_network_transmit_bytes counter"
     echo "docker_container_network_transmit_bytes{name=\"$NAME\",id=\"$CONTAINER_ID\"} $NET_IO_TX_BYTES"
-
-    echo "# HELP docker_container_block_io_read_bytes Block I/O read bytes by the container"
-    echo "# TYPE docker_container_block_io_read_bytes counter"
     echo "docker_container_block_io_read_bytes{name=\"$NAME\",id=\"$CONTAINER_ID\"} $BLOCK_IO_READ_BYTES"
-
-    echo "# HELP docker_container_block_io_write_bytes Block I/O write bytes by the container"
-    echo "# TYPE docker_container_block_io_write_bytes counter"
     echo "docker_container_block_io_write_bytes{name=\"$NAME\",id=\"$CONTAINER_ID\"} $BLOCK_IO_WRITE_BYTES"
-
-    echo "# HELP docker_container_pids Number of processes or threads in the container"
-    echo "# TYPE docker_container_pids gauge"
     echo "docker_container_pids{name=\"$NAME\",id=\"$CONTAINER_ID\"} $PIDS"
 done
