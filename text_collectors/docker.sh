@@ -1,4 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#
+# Description: Expose metrics from docker stats 
+#
+# Author: Alexander Korolyov <korol.al@gmail.com>
 
 # Run docker stats command and capture the output
 docker stats --no-stream --format "{{.ID}} {{.Name}} {{.CPUPerc}} {{.MemUsage}} {{.MemPerc}} {{.NetIO}} {{.BlockIO}} {{.PIDs}}" | while read -r line; do
