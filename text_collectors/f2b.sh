@@ -7,7 +7,7 @@
 # Function to extract metrics from jail status
 parse_jail_metrics() {
     jail_name=$1
-    status_output=$(sudo fail2ban-client status "$jail_name")
+    status_output=$(fail2ban-client status "$jail_name")
 
     # Extract metrics from the status output
     currently_failed=$(echo "$status_output" | grep "Currently failed:" | awk '{print $5}')
@@ -33,8 +33,14 @@ parse_jail_metrics() {
     echo "fail2ban_total_banned_total{jail=\"$jail_name\"} $total_banned"
 }
 
+# Check if we are root
+if [ "$EUID" -ne 0 ]; then
+  echo "${0##*/}: Please run as root!" >&2
+  exit 1
+fi
+
 # Get the status of fail2ban and extract the number of jails and list of jails
-status_output=$(sudo fail2ban-client status)
+status_output=$(fail2ban-client status)
 num_jails=$(echo "$status_output" | grep "Number of jail:" | awk '{print $5}')
 jail_list=$(echo "$status_output" | grep "Jail list:" | cut -d ':' -f2 | tr ',' ' ')
 
