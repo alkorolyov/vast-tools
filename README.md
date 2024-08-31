@@ -134,7 +134,7 @@ watch nvidia-smi --query-gpu=index,temperature.gpu,fan.speed,power.draw.instant,
 
 ### IPMICFG
 ```
-curl -O https://github.com/alkorolyov/vast-tools/blob/main/ipmicfg.sh; bash ipmicfg.sh
+curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/ipmicfg.sh; bash ipmicfg.sh
 ```
 
 ### Test pytorch on all gpus
