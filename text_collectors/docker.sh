@@ -8,8 +8,7 @@
 convert_to_bytes() {
     local input=$1
     local value=$(echo "$input" | sed 's/[A-Za-z]//g')
-    # strip 'i' and normalize to upper letters
-    local unit=$(echo "$input" | sed 's/[0-9.i]//g' | tr '[:lower:]' '[:upper:]')
+    local unit=$(echo "$input" | sed 's/[0-9.i]//g' | tr '[:lower:]' '[:upper:]')  # strip 'i' and normalize to upper letters
 
     case "$unit" in
         B) echo "${value}";;
@@ -17,6 +16,7 @@ convert_to_bytes() {
         MB) echo "$(echo "${value} * 1024 * 1024" | bc | awk '{printf "%.0f", $0}')";;
         GB) echo "$(echo "${value} * 1024 * 1024 * 1024" | bc | awk '{printf "%.0f", $0}')";;
         TB) echo "$(echo "${value} * 1024 * 1024 * 1024 * 1024" | bc | awk '{printf "%.0f", $0}')";;
+        PB) echo "$(echo "${value} * 1024 * 1024 * 1024 * 1024 * 1024" | bc | awk '{printf "%.0f", $0}')";;
         *) echo "Unsupported unit: $unit" >&2; exit 1;;
     esac
 }
