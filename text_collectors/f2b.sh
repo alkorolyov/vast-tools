@@ -39,6 +39,12 @@ if [ "$EUID" -ne 0 ]; then
   exit 1
 fi
 
+# Check if programs are installed
+if ! command -v fail2ban >/dev/null 2>&1; then
+  echo "${0##*/}: fail2ban is not installed. Aborting." >&2
+  exit 1
+fi
+
 # Get the status of fail2ban and extract the number of jails and list of jails
 status_output=$(fail2ban-client status)
 num_jails=$(echo "$status_output" | grep "Number of jail:" | awk '{print $5}')
