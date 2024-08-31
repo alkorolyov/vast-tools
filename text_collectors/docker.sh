@@ -9,10 +9,10 @@ docker stats --no-stream --format "{{.ID}} {{.Name}} {{.CPUPerc}} {{.MemUsage}} 
     # Parse each line of the docker stats output
     CONTAINER_ID=$(echo $line | awk '{print $1}')
     NAME=$(echo $line | awk '{print $2}')
-    CPU=$(echo $line | awk '{print $3}' | sed 's/%//')
+    CPU=$(echo $line | awk '{print $3}')
     MEM_USAGE=$(echo $line | awk '{print $4}')
     MEM_LIMIT=$(echo $line | awk '{print $6}')
-    MEM_PERC=$(echo $line | awk '{print $7}' | sed 's/%//')
+    MEM_PERC=$(echo $line | awk '{print $7}')
     NET_IO_RX=$(echo $line | awk '{print $8}')
     NET_IO_TX=$(echo $line | awk '{print $10}')
     BLOCK_IO_READ=$(echo $line | awk '{print $11}')
