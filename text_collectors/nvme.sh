@@ -25,6 +25,12 @@ if ! command -v nvme >/dev/null 2>&1; then
   exit 1
 fi
 
+# Check if programs are installed
+if ! command -v jq >/dev/null 2>&1; then
+  echo "${0##*/}: jq is not installed. Aborting." >&2
+  exit 1
+fi
+
 output_format_awk="$(
   cat <<'OUTPUTAWK'
 BEGIN { v = "" }
