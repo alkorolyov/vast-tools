@@ -70,7 +70,6 @@ while IFS=',' read -r pci_bus_id pcie_gen pcie_width fan_speed pstate gpu_util m
     ecc_errors_uncorrected=$(echo "$ecc_errors_uncorrected" | tr -d ' ')
 
     # Convert ECC modes to boolean
-    echo -e "ecc: $ecc_mode_current"
     ecc_mode_current=$( [[ "$ecc_mode_current" == "Enabled" ]] && echo 1 || echo 0 )
     ecc_mode_pending=$( [[ "$ecc_mode_pending" == "Enabled" ]] && echo 1 || echo 0 )
 
