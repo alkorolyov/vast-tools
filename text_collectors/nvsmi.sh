@@ -64,10 +64,13 @@ while IFS=',' read -r pci_bus_id pcie_gen pcie_width fan_speed pstate gpu_util m
     pcie_gen=$(echo "$pcie_gen" | tr -d ' ')
     pcie_width=$(echo "$pcie_width" | tr -d ' ')
     pstate=$(echo "$pstate" | tr -d ' ' | sed 's/P//')
+    ecc_mode_current=$(echo "$ecc_mode_current" | tr -d ' ')
+    ecc_mode_pending=$(echo "$ecc_mode_pending" | tr -d ' ')
     ecc_errors_corrected=$(echo "$ecc_errors_corrected" | tr -d ' ')
     ecc_errors_uncorrected=$(echo "$ecc_errors_uncorrected" | tr -d ' ')
 
     # Convert ECC modes to boolean
+    echo -e "ecc: $ecc_mode_current"
     ecc_mode_current=$( [[ "$ecc_mode_current" == "Enabled" ]] && echo 1 || echo 0 )
     ecc_mode_pending=$( [[ "$ecc_mode_pending" == "Enabled" ]] && echo 1 || echo 0 )
 
