@@ -40,7 +40,7 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 # Check if programs are installed
-if ! command -v fail2ban >/dev/null 2>&1; then
+if ! command -v fail2ban-client >/dev/null 2>&1; then
   echo "${0##*/}: fail2ban is not installed. Aborting." >&2
   exit 1
 fi
