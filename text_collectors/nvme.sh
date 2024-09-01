@@ -21,7 +21,7 @@ fi
 
 # Check if programs are installed
 if ! command -v nvme >/dev/null 2>&1; then
-  echo "${0##*/}: nvme is not installed. Aborting." >&2
+  echo "${0##*/}: nvme-cli is not installed. Aborting." >&2
   exit 1
 fi
 
