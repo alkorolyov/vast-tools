@@ -30,7 +30,7 @@ ipmitool sensor | awk '
 
     BEGIN {
         FS = "[ ]*[|][ ]*";
-        namespace = "node_ipmi_";
+        namespace = "ipmi_";
 
         # Friendly description of the type of sensor for HELP.
         help["temperature_celsius"] = "Temperature";
