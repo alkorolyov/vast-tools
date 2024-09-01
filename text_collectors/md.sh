@@ -43,7 +43,7 @@ for MD_DEVICE in /dev/md/*; do
         fi
       fi
 
-      echo -n "node_md_disk_info{disk_device=\"${DISK_DEVICE}\", md_device=\"${MD_DEVICE_NUM}\""
+      echo -n "md_disk_info{disk_device=\"${DISK_DEVICE}\", md_device=\"${MD_DEVICE_NUM}\""
       if [[ -n ${DISK_SET} ]]; then
         SET_LETTERS=({A..Z})
         echo -n ", md_set=\"${SET_LETTERS[${DISK_SET}]}\""
@@ -53,7 +53,7 @@ for MD_DEVICE in /dev/md/*; do
 
     # Output RAID array metrics
     # NOTE: Metadata version is a label rather than a separate metric because the version can be a string
-    echo "node_md_info{md_device=\"${MD_DEVICE_NUM}\", md_name=\"${MD_DEVICE}\", raid_level=\"${MD_LEVEL}\", md_metadata_version=\"${MD_METADATA_VERSION}\"} 1"
+    echo "md_info{md_device=\"${MD_DEVICE_NUM}\", md_name=\"${MD_DEVICE}\", raid_level=\"${MD_LEVEL}\", md_metadata_version=\"${MD_METADATA_VERSION}\"} 1"
   )
   fi
 done
