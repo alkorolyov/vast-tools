@@ -16,21 +16,21 @@ parse_jail_metrics() {
     total_banned=$(echo "$status_output" | grep "Total banned:" | awk '{print $4}')
 
     # Print Prometheus metrics for this jail
-    echo "# HELP fail2ban_currently_failed_total Number of failed connections."
-    echo "# TYPE fail2ban_currently_failed_total counter"
-    echo "fail2ban_currently_failed_total{jail=\"$jail_name\"} $currently_failed"
+    echo "# HELP fail2ban_currently_failed Number of failed connections."
+    echo "# TYPE fail2ban_currently_failed counter"
+    echo "fail2ban_currently_failed{jail=\"$jail_name\"} $currently_failed"
 
-    echo "# HELP fail2ban_total_failed_total Number of all time failed connections."
-    echo "# TYPE fail2ban_total_failed_total counter"
-    echo "fail2ban_total_failed_total{jail=\"$jail_name\"} $total_failed"
+    echo "# HELP fail2ban_total_failed Number of all time failed connections."
+    echo "# TYPE fail2ban_total_failed counter"
+    echo "fail2ban_total_failed{jail=\"$jail_name\"} $total_failed"
 
-    echo "# HELP fail2ban_currently_banned_total Number of banned IP-Addresses in the timeframe."
-    echo "# TYPE fail2ban_currently_banned_total counter"
-    echo "fail2ban_currently_banned_total{jail=\"$jail_name\"} $currently_banned"
+    echo "# HELP fail2ban_currently_banned Number of banned IP-Addresses in the timeframe."
+    echo "# TYPE fail2ban_currently_banned counter"
+    echo "fail2ban_currently_banned{jail=\"$jail_name\"} $currently_banned"
 
-    echo "# HELP fail2ban_total_banned_total Number of all time banned IP-Addresses."
-    echo "# TYPE fail2ban_total_banned_total counter"
-    echo "fail2ban_total_banned_total{jail=\"$jail_name\"} $total_banned"
+    echo "# HELP fail2ban_total_banned Number of all time banned IP-Addresses."
+    echo "# TYPE fail2ban_total_banned counter"
+    echo "fail2ban_total_banned{jail=\"$jail_name\"} $total_banned"
 }
 
 # Check if we are root
