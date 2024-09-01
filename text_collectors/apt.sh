@@ -23,10 +23,10 @@ else
   echo 'apt_upgrades_pending{origin="",arch=""} 0'
 fi
 
-echo '# HELP node_reboot_required Node reboot is required for software updates.'
-echo '# TYPE node_reboot_required gauge'
+echo '# HELP apt_reboot_required Node reboot is required for software updates.'
+echo '# TYPE apt_reboot_required gauge'
 if [[ -f '/run/reboot-required' ]] ; then
-  echo 'node_reboot_required 1'
+  echo 'apt_reboot_required 1'
 else
-  echo 'node_reboot_required 0'
+  echo 'apt_reboot_required 0'
 fi
