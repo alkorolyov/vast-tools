@@ -123,7 +123,7 @@ curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/pci_info.sh
 ### Create instance
 ```
 ./vast show machines | grep machine_id
-./vast search offers 'machine_id = xxx'
+./vast search offers 'machine_id = xxx verifed = any'
 ./vast create instance xxx --image pytorch/pytorch --disk 8 --jupyter --jupyter-lab
 ```
 
