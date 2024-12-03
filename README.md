@@ -2,6 +2,8 @@
 
 [Test machine](#testing)
 
+[Logs](#logs)
+
 # Initial setup
 
 ### Install Ubuntu 20.04
