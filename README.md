@@ -98,6 +98,20 @@ conda run -n $CONDA_ENV python -m ipykernel install --user --name $CONDA_ENV
 conda activate $CONDA_ENV
 ```
 
+# Logs
+
+### Usefull logs
+```
+cat /var/log/syslog | grep -iF "error"
+```
+```
+dmesg -T
+```
+```
+grep error /var/lib/vastai_kaalia/kaalia.*.log | less
+```
+
+
 # Testing
 
 ### GPU burn
