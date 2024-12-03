@@ -110,7 +110,7 @@ cat /var/log/syslog | grep -iF "error"
 dmesg -T
 ```
 ```
-grep error /var/lib/vastai_kaalia/kaalia.*.log | less
+grep error /var/lib/vastai_kaalia/kaalia.*log | less
 ```
 
 
