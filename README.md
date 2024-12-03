@@ -55,7 +55,7 @@ sudo mkfs.xfs /dev/md0 -f
 uuid=$(sudo blkid -s UUID -o value /dev/md0)
 
 # Add the disk to fstab with discard and nofail options
-sudo bash -c "echo 'UUID=$uuid /var/lib/docker xfs rw,auto,pquota,discard,nofail 0 0' >> /etc/fstab"
+sudo bash -c "echo 'UUID=\"$uuid\" /var/lib/docker xfs rw,auto,pquota,discard,nofail 0 0' >> /etc/fstab"
 
 # Mount all filesystems
 sudo mount -a
