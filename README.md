@@ -85,6 +85,11 @@ Copy command from vast site
 https://cloud.vast.ai/host/setup/
 ```
 
+In case nvml error
+```
+wget https://raw.githubusercontent.com/alkorolyov/vast-tools/main/nvml_fix.py; sudo python3 nvml_fix.py
+```
+
 Setup port range
 ```
 sudo bash -c 'echo "40000-40019" > /var/lib/vastai_kaalia/host_port_range'
