@@ -85,6 +85,11 @@ Copy command from vast site
 https://cloud.vast.ai/host/setup/
 ```
 
+Setup port range
+```
+sudo bash -c 'echo "40000-40019" > /var/lib/vastai_kaalia/host_port_range'
+```
+
 ### Install miniforge and create conda environment
 ```
 CONDA_ENV="vast"
