@@ -150,7 +150,7 @@ curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/pci_info.sh
 ```
 ./vast show machines | grep machine_id
 ./vast search offers 'machine_id = xxx verified = any'
-./vast create instance xxx --image pytorch/pytorch --disk 8 --jupyter --jupyter-lab
+./vast create instance xxx --image pytorch/pytorch --disk 8 --direct --jupyter --jupyter-lab
 ```
 
 ### Monitor gpu
