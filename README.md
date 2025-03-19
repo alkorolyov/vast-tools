@@ -6,7 +6,7 @@
 
 # Initial setup
 
-### Install Ubuntu 20.04
+### Install Ubuntu 22.04
 
 * Partitions during installation:
     - 8 gb swap on boot drive
@@ -40,7 +40,6 @@ sudo systemctl disable apt-daily-upgrade.timer
 sudo systemctl mask apt-daily-upgrade.service 
 sudo systemctl disable apt-daily.timer
 sudo systemctl mask apt-daily.service
-
 
 # create /var/lib/docker
 sudo mkdir -p /var/lib/docker
