@@ -17,7 +17,7 @@
 * Reboot
 
 ```
-for KVM download and install 
+# for KVM download and install 
 https://download.huihoo.com/java/javase/7/jdk-7u21-linux-x64.tar.gz
 
 To setup raid:
@@ -27,7 +27,7 @@ To setup raid:
 - then format raid to your needs: 
 - 192GB for / ext4
 - 8GB for /swap
-- other for /var/lib/docker xfs
+- rest for /var/lib/docker xfs
 
 ```
 
@@ -37,8 +37,10 @@ To setup raid:
 sudo apt-get install curl wget mc python3 -y
 
 # Configure SSH
-# Generate keys on your client machine and copy public key to host
+# Generate keys on your client machine
 ssh-keygen -C user@domain
+# copy public key to host
+/.ssh/authorized_keys
 
 # Disable password login and change port
 sudo sed -i -E 's/^#?Port 22/Port 22222/' /etc/ssh/sshd_config # optional
