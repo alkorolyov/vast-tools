@@ -6,7 +6,7 @@
 
 # Initial setup
 
-### Install Ubuntu 22.04
+### Install Ubuntu 20.04
 
 * Partitions during installation:
     - 8 gb swap on boot drive
@@ -15,6 +15,22 @@
 * Configure ip addr (disable unused adapter)
 * Add openssh server
 * Reboot
+
+```
+for KVM download and install 
+https://download.huihoo.com/java/javase/7/jdk-7u21-linux-x64.tar.gz
+
+To setup raid:
+- set both drives as boot
+- create partition but leave unformated
+- create raid
+- then format raid to your needs: 
+- 192GB for / ext4
+- 8GB for /swap
+- other for /var/lib/docker xfs
+
+```
+
 
 ```
 # Install necessary packages
