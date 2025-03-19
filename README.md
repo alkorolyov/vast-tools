@@ -97,6 +97,14 @@ curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/fail2ban.sh
 ```
 
 ### Setup vast
+(Optinal) Copy machine, BEFORE vast install
+```
+sudo su
+mkdir /var/lib/vastai_kaalia
+echo -n 'YOUR_MACHINE_ID' > /var/lib/vastai_kaalia/machine_id
+```
+
+
 Copy command from vast site
 ```
 https://cloud.vast.ai/host/setup/
