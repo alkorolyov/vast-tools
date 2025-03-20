@@ -117,7 +117,7 @@ wget https://raw.githubusercontent.com/alkorolyov/vast-tools/main/nvml_fix.py; s
 
 Setup port range
 ```
-sudo bash -c 'echo "40000-40400" > /var/lib/vastai_kaalia/host_port_range'
+sudo bash -c 'echo "40000-40399" > /var/lib/vastai_kaalia/host_port_range'
 ```
 
 ### Install miniforge and create conda environment
