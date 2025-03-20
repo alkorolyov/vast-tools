@@ -104,6 +104,10 @@ mkdir /var/lib/vastai_kaalia
 echo -n 'YOUR_MACHINE_ID' > /var/lib/vastai_kaalia/machine_id
 ```
 
+Setup port range
+```
+sudo bash -c 'echo "40000-40399" > /var/lib/vastai_kaalia/host_port_range'
+```
 
 Copy command from vast site
 ```
@@ -115,10 +119,13 @@ In case nvml error
 wget https://raw.githubusercontent.com/alkorolyov/vast-tools/main/nvml_fix.py; sudo python3 nvml_fix.py
 ```
 
-Setup port range
+Speedtest
 ```
-sudo bash -c 'echo "40000-40399" > /var/lib/vastai_kaalia/host_port_range'
+cd /var/lib/vast_kaalia/
+sudo rm latest/speedtest-cli
+sudo ./send_machine_info.py --speedtest
 ```
+
 
 ### Install miniforge and create conda environment
 ```
