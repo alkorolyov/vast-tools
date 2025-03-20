@@ -121,9 +121,9 @@ wget https://raw.githubusercontent.com/alkorolyov/vast-tools/main/nvml_fix.py; s
 
 Speedtest
 ```
-cd /var/lib/vast_kaalia/
+cd /var/lib/vastai_kaalia/
 sudo rm latest/speedtest-cli
-sudo ./send_machine_info.py --speedtest
+sudo ./send_mach_info.py --speedtest
 ```
 
 
