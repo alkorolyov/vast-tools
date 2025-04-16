@@ -91,6 +91,12 @@ sudo apt-get install nvidia-headless-550-server nvidia-utils-550-server -y
 sudo reboot now
 ```
 
+```
+sudo add-apt-repository ppa:graphics-drivers/ppa -y
+sudo apt update
+sudo apt install nvidia-driver-570-open
+```
+
 ### Install fail2ban [optional]
 ```
 curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/fail2ban.sh; bash fail2ban.sh
