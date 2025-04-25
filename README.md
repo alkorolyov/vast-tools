@@ -203,6 +203,9 @@ curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/ipmicfg.sh;
 
 ### Test pytorch on all gpus
 ```
+sudo docker run --rm --gpus all -it pytorch/pytorch:latest bash -c "apt-get update && apt-get install -y sudo curl && curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/gpu_test_run.py && python gpu_test_run.py"
+```
+```
 curl -O https://raw.githubusercontent.com/alkorolyov/vast-tools/main/gpu_test_run.py; python3 gpu_test_run.py
 ```
 
